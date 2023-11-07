@@ -10,7 +10,7 @@ Provide a brief overview of the project objhectives, approach, and results.
 
 # Required Submissions
 
-* [Proposal](https://github.com/zhiwenwuZW/VistaShare/blob/main/docs/proposal.md)
+* [Proposal](proposal)
 * [Midterm Checkpoint Presentation Slides](https://github.com/zhiwenwuZW/VistaShare/blob/main/docs/proposal.md)
 * [Final Presentation Slides](https://github.com/zhiwenwuZW/VistaShare/blob/main/docs/report.md)
-* [Final Report](https://github.com/zhiwenwuZW/VistaShare/blob/main/docs/report.md)
+* [Final Report](report)
