@@ -6,11 +6,11 @@ In most modern cars, we have cameras and radar and various other sensors to prot
 
 ## 2. State of the Art & Its Limitations
 
-In recent years, there have been considerable research and projects in the field of V2V (vehicle-to-vehicle) communication. The main motivation for vehicular communication systems is safety and eliminating the excessive cost of traffic collisions. However, such system can be heavily interfered over the spectrum of other applications. 
+Traditionally, car networking refers to connecting components internal to the car using specialized communication protocols. This tech-driven infrastructure consists of many vehicle node networks that enable bidirectional interaction between vehicles and mobile devices to manage traffic, parking, and accidents. However, for safety purposes, the information gathered within one car is often insufficient to prevent traffic accidents, which motivates us to explore the feasibility of combining and sharing information across vehicles to prevent accidents. In recent years, there have been considerable research and projects in the field of V2V (vehicle-to-vehicle) communication. The main motivation for vehicular communication systems is safety and eliminating the excessive cost of traffic collisions. However, such system can be heavily interfered over the spectrum of other applications. 
 
 ## 3. Novelty & Rationale
 
-In our approach, we aim to use wifi to transport the live video due to its high bandwidth and stability. 
+In our approach, we aim to use wifi to transport the live video due to its high bandwidth and stability. We used ZeroMQ for decoding the video signal for reduced latency.
 
 ## 4. Potential Impact
 
