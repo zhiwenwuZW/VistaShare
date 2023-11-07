@@ -10,7 +10,7 @@ Traditionally, car networking refers to connecting components internal to the ca
 
 ## 3. Novelty & Rationale
 
-In our approach, we aim to use wifi to transport the live video due to its high bandwidth and stability. We used ZeroMQ for decoding the video signal for reduced latency.
+In our approach, we aim to use wifi to transport the live video thanks to its high bandwidth and stability. We used ZeroMQ for decoding the video signal for reduced latency.
 
 ## 4. Potential Impact
 
