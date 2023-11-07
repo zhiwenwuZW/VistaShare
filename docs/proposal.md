@@ -1,16 +1,16 @@
-# Project Proposal
+# VistaShare Project Proposal
 
 ## 1. Motivation & Objective
 
-What are you trying to do and why? (plain English without jargon)
+In most modern cars, we have cameras and radar and various other sensors to protect driving safety. However, in certain scenarios, the driver's vision might be blocked by large vehicles and trucks. This could be dangerous as the driver can not see incoming cars, bikes, or pedestrians and can cause road accidents. Therefore, we aim to design an embedded system that detects such scenarios where the driver's vision is blocked and provide them with real-time video of the visually blocked area from camera on a nearby car. 
 
 ## 2. State of the Art & Its Limitations
 
-How is it done today, and what are the limits of current practice?
+In recent years, there have been considerable research and projects in the field of V2V (vehicle-to-vehicle) communication. The main motivation for vehicular communication systems is safety and eliminating the excessive cost of traffic collisions. However, such system can be heavily interfered over the spectrum of other applications. 
 
 ## 3. Novelty & Rationale
 
-What is new in your approach and why do you think it will be successful?
+In our approach, we aim to use wifi to transport the live video due to its high bandwidth and stability. 
 
 ## 4. Potential Impact
 
