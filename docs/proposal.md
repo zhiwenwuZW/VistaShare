@@ -2,7 +2,7 @@
 
 ## 1. Motivation & Objective
 
-In most modern cars, we have cameras and radar and various other sensors to protect driving safety. However, in certain scenarios, the driver's vision might be blocked by large vehicles and trucks. This could be dangerous as the driver can not see incoming cars, bikes, or pedestrians and can cause road accidents. Therefore, we aim to design an embedded system that detects such scenarios where the driver's vision is blocked and provide them with real-time video of the visually blocked area from camera on a nearby car. 
+In most modern cars, we have cameras and radars and various other sensors to protect driving safety. However, in certain scenarios, the driver's vision might be blocked by large vehicles and trucks. This could be dangerous as the driver can not see incoming cars, bikes, or pedestrians and can cause road accidents. Therefore, we aim to design an embedded system that detects such scenarios where the driver's vision is blocked and provide them with real-time video of the visually blocked area from camera on a nearby car. 
 
 ## 2. State of the Art & Its Limitations
 
@@ -22,6 +22,7 @@ The most critical challenge in this project is to ensure accuracte obstruction d
 
 ## 6. Requirements for Success
 
+Our system should use at least two cameras, one lidar and two Raspberry Pis. To achieve good live video transmission, we need to prepare a stable Wi-Fi source using Hotspot. For dangerous object detection, we might need datasets online to train a classfication model. Finally, we need two cars to test the system. 
 What skills and resources are necessary to perform the project?
 
 ## 7. Metrics of Success
