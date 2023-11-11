@@ -9,7 +9,7 @@ The "VistaShare Driving Aid" employs a Raspberry Pi-based system to enhance road
 
 # Required Submissions
 
-* [Proposal](proposal.md)
+* [Proposal](proposal)
 * [Midterm Checkpoint Presentation Slides](https://docs.google.com/presentation/d/1-6ny779JzQrAuoaPaeqrYQI-by3a2aB_l3mRqVtuiAo/edit?usp=sharing)
 * [Final Presentation Slides](https://docs.google.com/presentation/d/13eeITTVJsUpI7m8_TvrdRJaMw0F7_hmQJHPrs1LDbX4/edit?usp=sharing)
 * [Final Report](report)
