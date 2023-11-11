@@ -47,18 +47,63 @@ Final Implementation: Finalizing the system. TODO
 
 ### 9.a. Papers
 
-Collaborative driving, V2V, CV detection of human and moving objects, etc.
-List the key papers that you have identified relating to your project idea, and describe how they related to your project. Provide references (with full citation in the References section below).
+In the development of the VistaShare Project, several key research papers have been identified that align closely with our objectives of seamless video fusion and object removal in live streaming. These papers provide valuable insights into the methodologies and technologies that can be leveraged for our project.
 
+Real-time VL/IR Video Fusion Leveraging Multiple VL Apertures on Resource-Constrained Computing Platform
+
+Summary: This study presents a method for automatic visible light/infrared image registration using multiple visible light apertures, tailored for fast computation on resource-constrained systems. Its focus on dynamic registration of high-definition video is particularly relevant for our project's aim of real-time video fusion.
+Reference: Anna Svagzdys, Richard W. Demar, Gregory F. S. Hewitt, Mark Bruneau, "Real-time VL/IR video fusion leveraging multiple VL apertures on resource-constrained computing platform," Proc. SPIE 12002, Imaging and Applied Optics 2022 (3D, AIO, COSI, IS, MATH, pcAOP), 120020Q (2022); DOI: 10.1117/12.2618387.
+Intelligent Live Video Streaming for Object Detection
+
+Summary: This paper proposes a live video stream processing system that integrates features to cope with dynamic networks and achieve low latency, crucial for our project's focus on real-time video streaming and object detection.
+Reference: Mingkang Chen, Jingtao Sun, Kento Aida, Renato J. Figueiredo, Yun-Jung Ku, Kensworth C. Subratie, "Intelligent Live Video Streaming for Object Detection," 2021 IEEE 23rd International Conference on High Performance Computing and Communications; IEEE 19th International Conference on Smart City; IEEE 7th International Conference on Data Science and Systems (HPCC/SmartCity/DSS), 2021, pp. 1409-1416, DOI: 10.1109/hpcc-dss-smartcity-dependsys53884.2021.00214.
+One-shot Logo Detection for Large Video Datasets and Live Camera Surveillance in Criminal Investigations
+
+Summary: This research introduces a novel approach for logo detection in live camera streams or large video datasets. The techniques discussed could be adapted for detecting and removing specific objects in live video streams, aligning with our project's goals.
+Reference: Stefanos Demertzis, Sabina B. van Rooij, M. Lazaridis, Henri Bouma, Manuel Alvarez Fernandez, Johan-Martijn ten Hove, Rodrigo Sainz Mendez, P. Daras, "One-shot logo detection for large video datasets and live camera surveillance in criminal investigations," Proc. SPIE 12178, Crime and Terrorism Detection, 121780I (2023); DOI: 10.1117/12.2681903.
+Multi-View Scheduling of Onboard Live Video Analytics to Minimize Frame Processing Latency
+
+Summary: This paper presents a real-time multi-view scheduling framework for live video analytics at the edge, aiming to minimize frame processing latency. This is crucial for seamless video fusion, directly applicable to our project.
+Reference: Shengzhong Liu, Tianshi Wang, Hongpeng Guo, Xinzhe Fu, P. David, Maggie B. Wigness, Archan Misra, T. Abdelzaher, "Multi-View Scheduling of Onboard Live Video Analytics to Minimize Frame Processing Latency," 2022 IEEE 42nd International Conference on Distributed Computing Systems (ICDCS), 2022, pp. 287-297, DOI: 10.1109/ICDCS54860.2022.00055.
+Color Reduction in an Authenticate Live 3D Point Cloud Video Streaming System
+
+Summary: This research discusses a live 3D point cloud video streaming system, focusing on filtering, compression, and color reduction techniques. These methods could be relevant for processing and fusing live video streams in our project.
+Reference: Zainab N. Sultani, Rana F. Al-Tuma, S. Wefel, "Color Reduction in an Authenticate Live 3D Point Cloud Video Streaming System," Computers 5, no.
 
 ### 9.b. Datasets
 
-List datasets that you have identified and plan to use. Provide references (with full citation in the References section below).
+Berkeley DeepDrive Video Dataset (BDD100K):
+Description: BDD100K is a diverse driving video database with 100K videos. It includes labeled data for various tasks like image tagging, object detection, and lane detection. This dataset can be particularly useful for developing video fusion algorithms tailored to real-world driving scenarios.
+URL: [Berkeley DeepDrive BDD100K](https://bdd-data.berkeley.edu/)
+
+KITTI Vision Benchmark Suite:
+Description: The KITTI dataset is one of the most well-known benchmarks for autonomous driving. It includes a variety of sensor data, including high-resolution RGB, grayscale stereo cameras, and 3D point clouds. While primarily used for autonomous driving research, its rich video and image data can be invaluable for developing and testing video fusion algorithms.
+URL: [KITTI Vision Benchmark Suite](http://www.cvlibs.net/datasets/kitti/)
 
 ### 9.c. Software
 
-List softwate that you have identified and plan to use. Provide references (with full citation in the References section below).
+removal in live streaming:
 
+OpenCV (Open Source Computer Vision Library):
+
+Description: Essential for image and video processing tasks.
+URL: opencv.org
+TensorFlow:
+
+Description: Open-source machine learning library for model training and deployment.
+URL: tensorflow.org
+Debian Operating System:
+
+Description: Stable and secure Linux distribution for development.
+URL: debian.org
+ZeroMQ (ZMQ):
+
+Description: ZeroMQ is an asynchronous messaging library, ideal for distributed or concurrent applications. It's particularly useful for managing data flow in real-time applications, making it a valuable tool for handling the complexities of live video streaming and processing in our project.
+URL: zeromq.org
+Visual Studio Code (VSCode):
+
+Description: Free, lightweight, and powerful code editor.
+URL: code.visualstudio.com
 ## 10. References
 
 List references correspondign to citations in your text above. For papers please include full citation and URL. For datasets and software include name and URL.
