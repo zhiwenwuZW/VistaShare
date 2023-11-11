@@ -4,7 +4,7 @@ The "VistaShare Driving Aid" employs a Raspberry Pi-based system to enhance road
 
 # Team
 
-* [Zhiwen Wu](https://github.com/zhiwenwuZW/)
+* [Zhiwen Wu](https://zhiwenwuzw.github.io/)
 * [Tianyi Yang]()
 
 # Required Submissions
