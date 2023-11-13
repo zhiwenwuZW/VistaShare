@@ -110,6 +110,8 @@ Description: Free, lightweight, and powerful code editor.
 
 5. Sultani, Zainab N., et al. "Color Reduction in an Authenticate Live 3D Point Cloud Video Streaming System." *Computers 5*, no. 4, 2016. [Link](https://www.mdpi.com/2073-431X/5/4/24)
 
+6. Qiu, H., Ahmad, F., Bai, F., Gruteser, M., & Govindan, R. (2018). AVR: Augmented Vehicular Reality. Proceedings of the 16th Annual International Conference on Mobile Systems, Applications, and Services.[Link](https://www.winlab.rutgers.edu/~gruteser/papers/mobisys18-7-qiu.pdf)
+   
 #### Datasets
 
 6. "Berkeley DeepDrive BDD100K." [Link](https://bdd-data.berkeley.edu/)
