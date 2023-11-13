@@ -14,7 +14,7 @@ rawCapture = PiRGBArray(camera, size=(640, 480))
 
 context = zmq.Context()
 footage_socket = context.socket(zmq.PAIR)
-footage_socket.connect(f'tcp://{IP}:5555')
+footage_socket.connect(f'tcp://{IP}:5556')
 print(f"Target IP: {IP}")
 
 try:
