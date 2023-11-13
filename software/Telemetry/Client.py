@@ -9,12 +9,13 @@ footage_socket.bind('tcp://*:5556')
 
 try:
     while True:
-        print("receiving...")
+        print("1")
         frame = footage_socket.recv_string()
         img = base64.b64decode(frame)
         npimg = np.frombuffer(img, dtype=np.uint8)
         source = cv2.imdecode(npimg, 1)
         cv2.imshow("Stream", source)
+        print("2")
         cv2.waitKey(1)
 except KeyboardInterrupt:
     print("Interrupted")
