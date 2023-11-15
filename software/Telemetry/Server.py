@@ -19,13 +19,12 @@ print(f"Target IP: {IP}")
 
 try:
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-        print("1")
+        print(".")
         frame_image = frame.array
         encoded, buffer = cv2.imencode('.jpg', frame_image)
         jpg_as_text = base64.b64encode(buffer)
         footage_socket.send(jpg_as_text)
         rawCapture.truncate(0)
-        print("2")
 except KeyboardInterrupt:
     print("Interrupted by user")
     camera.close()

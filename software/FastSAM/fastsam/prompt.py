@@ -216,7 +216,8 @@ class FastSAMPrompt:
         if not os.path.exists(path):
             os.makedirs(path)
         result = result[:, :, ::-1]
-        cv2.imwrite(output_path, result)
+        cv2.imshow('Segmentation Result', result)
+        # cv2.imwrite(output_path, result)
      
     #   CPU post process
     def fast_show_mask(
