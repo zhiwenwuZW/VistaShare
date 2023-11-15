@@ -18,8 +18,8 @@ def Detect():
     # Set up Configures
     model_path = "./weights/FastSAM-s.pt"
     model = FastSAM(model_path)
-    img_path = "image.png"
-    point_prompt = ast.literal_eval("[[320, 240]]")
+    img_path = "image.jpg"
+    point_prompt = ast.literal_eval("[[240, 240]]")
     device = torch.device(
         "cuda"
         if torch.cuda.is_available()
@@ -30,7 +30,7 @@ def Detect():
     # draw high-resolution segmentation masks
     retina = True
     # image size
-    imgsz = 640
+    imgsz = 480
     # object confidence threshold
     conf = 0.4
     # iou threshold for filtering the annotations

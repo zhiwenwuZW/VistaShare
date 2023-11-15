@@ -21,8 +21,8 @@ class VideoClient:
             npimg = np.frombuffer(img, dtype=np.uint8)
             source = cv2.imdecode(npimg, 1)
 
-            cv2.imwrite('image.png', source)
-            cv2.imshow("Stream", source)
+            cv2.imwrite('image.jpg', source)
+            # cv2.imshow("Stream", source)
             print(".")
             cv2.waitKey(1)
 
