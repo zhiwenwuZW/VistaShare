@@ -48,15 +48,14 @@ def Detect():
     print("Start Detect")
     while True:
         if image_buffer:
+            print(".")
+
             # Process the first image in the buffer
             image = image_buffer.pop(0)
             # Convert from BGR to RGB if using PIL
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-            # load model
-            print(".")
-
-            sys.exit()
+            # sys.exit()
 
             model_path = "./weights/FastSAM-s.pt"
             img_path = "./images/car.png"
