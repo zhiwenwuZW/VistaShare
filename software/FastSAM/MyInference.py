@@ -134,7 +134,7 @@ def main():
     client = VideoClient()
 
     # Create a thread for receiving video
-    video_thread = threading.Thread(target=lambda: client.receive_video(image_buffer))
+    video_thread = threading.Thread(target=lambda: client.receive_video())
     video_thread.start()
 
     # Create a thread for detection
