@@ -20,13 +20,15 @@ class VideoClient:
             npimg = np.frombuffer(img, dtype=np.uint8)
             source = cv2.imdecode(npimg, 1)
 
-            image_buffer.append(source)
+            cv2.imwrite('image.png', source)
+            
+            # print("write to file")
             # cv2.imshow("Stream", source)
             # Process the frame (e.g., display, or pass to another function)
             cv2.waitKey(1)
 
 
 # # Example usage
-# if __name__ == "__main__":
-#     client = VideoClient()
-#     client.receive_video()
+if __name__ == "__main__":
+    client = VideoClient()
+    client.receive_video()

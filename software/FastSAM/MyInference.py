@@ -9,47 +9,14 @@ import sys
 import os
 import cv2
 import threading
-
-
-
-
-import cv2
-import zmq
-import base64
 import numpy as np
-
-image_buffer = []
-
-class VideoClient:
-    def __init__(self):
-        # Initialize ZMQ socket and other necessary variables
-        self.context = zmq.Context()
-        self.footage_socket = self.context.socket(zmq.PAIR)
-        self.footage_socket.bind('tcp://*:5555')  # Update the address as needed
-        print("Client Initialized")
-
-    def receive_video(self):
-        global image_buffer
-        print("Client Start Receive Video")
-        while True:
-            frame = self.footage_socket.recv_string()
-            img = base64.b64decode(frame)
-            npimg = np.frombuffer(img, dtype=np.uint8)
-            source = cv2.imdecode(npimg, 1)
-
-            cv2.imwrite('image.png', source)
-            
-            print("write to file")
-            # cv2.imshow("Stream", source)
-            # Process the frame (e.g., display, or pass to another function)
-            cv2.waitKey(1)
-
 
 def Detect():
 
     print("Start Detect")
 
     while True:
+        print("1")
         model_path = "./weights/FastSAM-s.pt"
         img_path = "image.png"
         model = FastSAM(model_path)
@@ -80,7 +47,7 @@ def Detect():
         better_quality = False
         # mask random color
         randomcolor = True
-
+        print("2")
         input = input.convert("RGB")
         everything_results = model(
             input,
@@ -93,11 +60,9 @@ def Detect():
         bboxes = None
         points = None
         # [1,0] 0:background, 1:foreground
-        point_label = [1]
+        point_label = [1]        
 
-        print(".")
-        sys.exit()
-
+        print("3")
         prompt_process = FastSAMPrompt(input, everything_results, device=device)
 
         # process point promt
@@ -106,7 +71,7 @@ def Detect():
         )
         points = point_prompt
         point_label = point_label
-
+        print("4")
         prompt_process.plot(
             annotations=ann,
 
@@ -121,27 +86,7 @@ def Detect():
 
 
 def main():
-    # Create the client instance
-    client = VideoClient()
-
-    # Create a thread for receiving video
-    video_thread = threading.Thread(target=lambda: client.receive_video())
-    video_thread.start()
-
+    Detect()
     
-    time.sleep(15)
-
-    sys.exit()
-    # Create a thread for detection
-    detect_thread = threading.Thread(target=Detect)
-    detect_thread.start()
-
-    # Optionally, wait for the detect thread to finish
-    # detect_thread.join()
-
-    # Note: We're not joining the video_thread as it's an infinite loop
-    
-
-
 if __name__ == "__main__":
     main()
