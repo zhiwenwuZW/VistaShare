@@ -128,6 +128,10 @@ def main():
     video_thread = threading.Thread(target=lambda: client.receive_video())
     video_thread.start()
 
+    
+    time.sleep(15)
+
+    sys.exit()
     # Create a thread for detection
     detect_thread = threading.Thread(target=Detect)
     detect_thread.start()

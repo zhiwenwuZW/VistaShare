@@ -27,4 +27,10 @@ try:
         rawCapture.truncate(0)
 except KeyboardInterrupt:
     print("Interrupted by user")
+    # Close the camera
     camera.close()
+    # Close the ZMQ socket
+    footage_socket.close()
+    # Terminate the ZMQ context
+    context.term()
+    print("Camera and ZMQ resources have been freed.")
