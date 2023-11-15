@@ -37,98 +37,90 @@ class VideoClient:
             npimg = np.frombuffer(img, dtype=np.uint8)
             source = cv2.imdecode(npimg, 1)
 
-            image_buffer.append(source)
+            cv2.imwrite('image.png', source)
+            
+            print("write to file")
             # cv2.imshow("Stream", source)
             # Process the frame (e.g., display, or pass to another function)
             cv2.waitKey(1)
 
+
 def Detect():
 
-    global image_buffer
     print("Start Detect")
+
     while True:
-        if image_buffer:
-            print(".")
+        model_path = "./weights/FastSAM-s.pt"
+        img_path = "image.png"
+        model = FastSAM(model_path)
+        point_prompt = ast.literal_eval("[[480, 320]]")
 
-            # Process the first image in the buffer
-            image = image_buffer.pop(0)
-            # Convert from BGR to RGB if using PIL
-            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        input = Image.open(img_path)
 
-            # sys.exit()
+        device = torch.device(
+            "cuda"
+            if torch.cuda.is_available()
+            else "mps"
+            if torch.backends.mps.is_available()
+            else "cpu"
+        )
+        # draw high-resolution segmentation masks
+        retina = True
+        # image size
+        imgsz = 640
+        # object confidence threshold
+        conf = 0.4
+        # iou threshold for filtering the annotations
+        iou = 0.9
+        # image save path
+        output = "./output/"
+        # draw the edges of the masks
+        withContours = True
+        # better quality using morphologyEx
+        better_quality = False
+        # mask random color
+        randomcolor = True
 
-            model_path = "./weights/FastSAM-s.pt"
-            img_path = "./images/car.png"
-            model = FastSAM(model_path)
-            point_prompt = ast.literal_eval("[[480, 320]]")
-
-            # input = Image.open(img_path)
-            input = image
-
-            device = torch.device(
-                "cuda"
-                if torch.cuda.is_available()
-                else "mps"
-                if torch.backends.mps.is_available()
-                else "cpu"
+        input = input.convert("RGB")
+        everything_results = model(
+            input,
+            device=device,
+            retina_masks=retina,
+            imgsz=imgsz,
+            conf=conf,
+            iou=iou    
             )
-            # draw high-resolution segmentation masks
-            retina = True
-            # image size
-            imgsz = 640
-            # object confidence threshold
-            conf = 0.4
-            # iou threshold for filtering the annotations
-            iou = 0.9
-            # image save path
-            output = "./output/"
-            # draw the edges of the masks
-            withContours = True
-            # better quality using morphologyEx
-            better_quality = False
-            # mask random color
-            randomcolor = True
+        bboxes = None
+        points = None
+        # [1,0] 0:background, 1:foreground
+        point_label = [1]
 
-            input = input.convert("RGB")
-            everything_results = model(
-                input,
-                device=device,
-                retina_masks=retina,
-                imgsz=imgsz,
-                conf=conf,
-                iou=iou    
-                )
-            bboxes = None
-            points = None
-            # [1,0] 0:background, 1:foreground
-            point_label = [1]
-            print("Start Detect")
-            prompt_process = FastSAMPrompt(input, everything_results, device=device)
+        print(".")
+        sys.exit()
 
-            # process point promt
-            ann = prompt_process.point_prompt(
-                points = point_prompt, pointlabel = point_label
-            )
-            points = point_prompt
-            point_label = point_label
+        prompt_process = FastSAMPrompt(input, everything_results, device=device)
 
-            prompt_process.plot(
-                annotations=ann,
+        # process point promt
+        ann = prompt_process.point_prompt(
+            points = point_prompt, pointlabel = point_label
+        )
+        points = point_prompt
+        point_label = point_label
 
-                output_path= output+img_path.split("/")[-1],
-                bboxes = bboxes,
-                points = points,
-                point_label = point_label,
-                withContours= withContours,
-                better_quality=better_quality,
-            )
+        prompt_process.plot(
+            annotations=ann,
+
+            output_path= output+img_path.split("/")[-1],
+            bboxes = bboxes,
+            points = points,
+            point_label = point_label,
+            withContours= withContours,
+            better_quality=better_quality,
+        )
 
 
 
 def main():
-    global image_buffer
-    image_buffer = []
-
     # Create the client instance
     client = VideoClient()
 
