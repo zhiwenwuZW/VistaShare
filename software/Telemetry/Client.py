@@ -2,6 +2,7 @@ import cv2
 import zmq
 import base64
 import numpy as np
+import sys
 
 class VideoClient:
     def __init__(self):
@@ -21,14 +22,16 @@ class VideoClient:
             source = cv2.imdecode(npimg, 1)
 
             cv2.imwrite('image.png', source)
+            cv2.imshow("Stream", source)
             
-            # print("write to file")
-            # cv2.imshow("Stream", source)
-            # Process the frame (e.g., display, or pass to another function)
             cv2.waitKey(1)
 
 
 # # Example usage
 if __name__ == "__main__":
     client = VideoClient()
-    client.receive_video()
+    try:
+        client.receive_video()
+    except KeyboardInterrupt:
+        print("Interrputed")
+        sys.exit()
