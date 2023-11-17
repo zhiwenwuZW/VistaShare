@@ -18,7 +18,7 @@ def Detect():
     # Set up Configures
     model_path = "./weights/FastSAM-s.pt"
     model = FastSAM(model_path)
-    img_path = "image.jpg"
+    img_path = "../Telemetry/image.jpg"
     point_prompt = ast.literal_eval("[[240, 240]]")
     device = torch.device(
         "cuda"
@@ -51,11 +51,11 @@ def Detect():
     box_prompt = "[[0,0,0,0]]"
     box_prompt = convert_box_xywh_to_xyxy(ast.literal_eval(box_prompt))
 
-    is_point_prompt = False
+    is_point_prompt = True
 
     while True:
 
-        print("init")
+        print("load")
 
         input = Image.open(img_path)
         input = input.convert("RGB")
