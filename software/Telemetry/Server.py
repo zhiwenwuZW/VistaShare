@@ -8,9 +8,9 @@ print("Server Starting")
 IP = '192.168.10.228'
 
 camera = picamera.PiCamera()
-camera.resolution = (240, 240)
+camera.resolution = (256, 256)
 camera.framerate = 10
-rawCapture = PiRGBArray(camera, size=(240, 240))
+rawCapture = PiRGBArray(camera, size=(256, 256))
 
 context = zmq.Context()
 footage_socket = context.socket(zmq.PAIR)
