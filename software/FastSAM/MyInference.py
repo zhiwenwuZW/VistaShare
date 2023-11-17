@@ -95,4 +95,4 @@ if __name__ == "__main__":
     print("Start Detect")
     while True:
         detector.receive()
-        detector.detect()
+        # detector.detect()
