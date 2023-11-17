@@ -9,7 +9,7 @@ IP = '192.168.10.228'
 
 camera = picamera.PiCamera()
 camera.resolution = (240, 240)
-camera.framerate = 1
+camera.framerate = 20
 rawCapture = PiRGBArray(camera, size=(240, 240))
 
 context = zmq.Context()
