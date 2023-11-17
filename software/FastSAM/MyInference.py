@@ -16,7 +16,7 @@ def Detect():
     print("Start Detect")
 
     # Set up Configures
-    model_path = "./weights/FastSAM-s.pt"
+    model_path = "./weights/FastSAM-x.pt"
     model = FastSAM(model_path)
     img_path = "../Telemetry/image.jpg"
     point_prompt = ast.literal_eval("[[240, 240]]")
@@ -55,7 +55,7 @@ def Detect():
 
     while True:
 
-        print("load")
+        # print("load")
 
         input = Image.open(img_path)
         input = input.convert("RGB")
@@ -68,12 +68,12 @@ def Detect():
             iou=iou    
             )
         
-        print("process")     
+        # print("process")     
 
         prompt_process = FastSAMPrompt(input, everything_results, device=device)
         
         if is_point_prompt:
-            print("point")
+            # print("point")
             # process point prompt
             ann = prompt_process.point_prompt(
                 points = point_prompt, pointlabel = point_label
@@ -81,12 +81,12 @@ def Detect():
             points = point_prompt
             point_label = point_label
         else:
-            print("box")
+            # print("box")
             # Box point prompt        
             ann = prompt_process.box_prompt(bboxes=box_prompt)
             bboxes = box_prompt
 
-        print("plot")
+        # print("plot")
         prompt_process.plot(
             annotations=ann,
             output_path= output+img_path.split("/")[-1],

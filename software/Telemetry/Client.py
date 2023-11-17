@@ -7,9 +7,10 @@ context = zmq.Context()
 footage_socket = context.socket(zmq.PAIR)
 footage_socket.bind('tcp://*:5556')
 
+print("Client Receiving")
+
 try:
     while True:
-        print("receiving...")
         frame = footage_socket.recv_string()
         img = base64.b64decode(frame)
         npimg = np.frombuffer(img, dtype=np.uint8)
