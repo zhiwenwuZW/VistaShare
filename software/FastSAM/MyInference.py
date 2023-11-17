@@ -19,7 +19,7 @@ def Detect():
     model_path = "./weights/FastSAM-x.pt"
     model = FastSAM(model_path)
     img_path = "../Telemetry/image.jpg"
-    point_prompt = ast.literal_eval("[[240, 240]]")
+    point_prompt = ast.literal_eval("[[120, 120]]")
     device = torch.device(
         "cuda"
         if torch.cuda.is_available()
