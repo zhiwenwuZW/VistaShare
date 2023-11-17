@@ -30,7 +30,7 @@ def Detect():
     # draw high-resolution segmentation masks
     retina = True
     # image size
-    imgsz = 480
+    imgsz = 240
     # object confidence threshold
     conf = 0.4
     # iou threshold for filtering the annotations
