@@ -47,10 +47,15 @@ def Detect():
     points = None
     # [1,0] 0:background, 1:foreground
     point_label = [1]   
+    # [[x,y,w,h],[x2,y2,w2,h2]] support multiple boxes
+    box_prompt = "[[0,0,0,0]]"
+    box_prompt = convert_box_xywh_to_xyxy(ast.literal_eval(box_prompt))
+
+    is_point_prompt = False
 
     while True:
 
-        print("1")
+        print("init")
 
         input = Image.open(img_path)
         input = input.convert("RGB")
@@ -63,18 +68,25 @@ def Detect():
             iou=iou    
             )
         
-        print("2")     
+        print("process")     
 
         prompt_process = FastSAMPrompt(input, everything_results, device=device)
-        # process point promt
-        ann = prompt_process.point_prompt(
-            points = point_prompt, pointlabel = point_label
-        )
+        
+        if is_point_prompt:
+            print("point")
+            # process point prompt
+            ann = prompt_process.point_prompt(
+                points = point_prompt, pointlabel = point_label
+            )
+            points = point_prompt
+            point_label = point_label
+        else:
+            print("box")
+            # Box point prompt        
+            ann = prompt_process.box_prompt(bboxes=box_prompt)
+            bboxes = box_prompt
 
-        print("3")
-
-        points = point_prompt
-        point_label = point_label
+        print("plot")
         prompt_process.plot(
             annotations=ann,
             output_path= output+img_path.split("/")[-1],
@@ -88,7 +100,7 @@ def Detect():
 
 
 
-def main():
+def main():    
     Detect()
     
 if __name__ == "__main__":
