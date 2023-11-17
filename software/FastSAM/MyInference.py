@@ -25,14 +25,14 @@ class FastSAMDetector:
         self.model_path = "./weights/FastSAM-x.pt"
         self.model = FastSAM(self.model_path)
         self.img_path = "image.jpg"
-        self.point_prompt = ast.literal_eval("[[128, 128]]")
+        self.point_prompt = ast.literal_eval("[[120, 120]]")
         self.device = torch.device(
             "cuda" if torch.cuda.is_available() else
             "mps" if torch.backends.mps.is_available() else
             "cpu"
         )
         self.retina = True
-        self.imgsz = 256
+        self.imgsz = 240
         self.conf = 0.4
         self.iou = 0.9
         self.output = "./output/"
