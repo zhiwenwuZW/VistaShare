@@ -9,7 +9,7 @@ IP = '192.168.10.228'
 
 camera = picamera.PiCamera()
 camera.resolution = (240, 240)
-camera.framerate = 20
+camera.framerate = 10
 rawCapture = PiRGBArray(camera, size=(240, 240))
 
 context = zmq.Context()
@@ -18,12 +18,17 @@ footage_socket.connect(f'tcp://{IP}:5556')
 print(f"Target IP: {IP}")
 
 try:
+    cnt = 0
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-        frame_image = frame.array
-        encoded, buffer = cv2.imencode('.jpg', frame_image)
-        jpg_as_text = base64.b64encode(buffer)
-        footage_socket.send(jpg_as_text)
-        rawCapture.truncate(0)
+        if cnt > 10:
+            frame_image = frame.array
+            encoded, buffer = cv2.imencode('.jpg', frame_image)
+            jpg_as_text = base64.b64encode(buffer)
+            footage_socket.send(jpg_as_text)
+            cnt = 0
+        else: 
+            cnt = cnt + 1
+            rawCapture.truncate(0)
 except KeyboardInterrupt:
     print("Interrupted by user")
     footage_socket.close()
