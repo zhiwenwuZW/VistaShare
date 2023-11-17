@@ -20,15 +20,15 @@ print(f"Target IP: {IP}")
 try:
     cnt = 0
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-        if cnt > 10:
+        # if cnt > 10:
             frame_image = frame.array
             encoded, buffer = cv2.imencode('.jpg', frame_image)
             jpg_as_text = base64.b64encode(buffer)
             footage_socket.send(jpg_as_text)
             cnt = 0
-        else: 
-            cnt = cnt + 1
-            rawCapture.truncate(0)
+        # else: 
+        #     cnt = cnt + 1
+        #     rawCapture.truncate(0)
 except KeyboardInterrupt:
     print("Interrupted by user")
     footage_socket.close()
