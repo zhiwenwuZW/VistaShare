@@ -26,4 +26,7 @@ try:
         rawCapture.truncate(0)
 except KeyboardInterrupt:
     print("Interrupted by user")
+    footage_socket.close()
+    context.term()
     camera.close()
+    print("Resource Freed")
