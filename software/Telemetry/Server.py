@@ -35,18 +35,3 @@ except KeyboardInterrupt:
     context.term()
     camera.close()
     print("Resource Freed")
-
-
-
-# import picamera
-# from picamera.array import PiRGBArray
-
-
-
-# try:
-#     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-#         print("Frame captured")
-#         rawCapture.truncate(0)
-# except KeyboardInterrupt:
-#     print("Interrupted by user")
-#     camera.close()
