@@ -5,7 +5,7 @@ import picamera
 from picamera.array import PiRGBArray
 
 print("Server Starting")
-IP = '192.168.10.228'
+IP = '192.168.105.228'
 
 camera = picamera.PiCamera()
 camera.resolution = (640, 480)

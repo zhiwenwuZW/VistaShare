@@ -13,9 +13,6 @@ import zmq
 import base64
 
 
-
-
-
 class Detector:
     def __init__(self):
         # Initialize ZMQ context and socket
