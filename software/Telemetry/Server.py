@@ -1,37 +1,51 @@
 import cv2
-import zmq
-import base64
 import picamera
 from picamera.array import PiRGBArray
+import time
+import datetime
+import socket
 
 print("Server Starting")
 IP = '192.168.105.228'
+PORT = 12345
 
+# Initialize the camera and set up the stream
 camera = picamera.PiCamera()
 camera.resolution = (640, 480)
 camera.framerate = 10
 rawCapture = PiRGBArray(camera, size=(640, 480))
 
-context = zmq.Context()
-footage_socket = context.socket(zmq.PAIR)
-footage_socket.connect(f'tcp://{IP}:5556')
-print(f"Target IP: {IP}")
+# Initialize UDP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+
+# Function to wait until a specific target time
+def wait_until(target_time):
+    while datetime.datetime.now() < target_time:
+        time.sleep(0.001)  # Sleep for 1 millisecond
+
+# Set a future start time (e.g., 1 minute from now)
+start_time = datetime.datetime.now() + datetime.timedelta(seconds=5)
+print(f"Start time set for {start_time}")
 
 try:
-    cnt = 0
+    print("Waiting for synchronized start time...")
+    wait_until(start_time)  # Wait until the start time
+
+    print("Starting camera capture...")
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-        if cnt > 10:
-            frame_image = frame.array
-            encoded, buffer = cv2.imencode('.jpg', frame_image)
-            jpg_as_text = base64.b64encode(buffer)
-            footage_socket.send(jpg_as_text)
-            cnt = 0
-        else: 
-            cnt = cnt + 1
+        frame_image = frame.array
+        # Process the frame here (e.g., display, save, or send it)
+        # Encode the frame for transmission
+        _, buffer = cv2.imencode('.jpg', frame_image)
+        sock.sendto(buffer, (IP, PORT))
+        # Clear the stream in preparation for the next frame
         rawCapture.truncate(0)
+
 except KeyboardInterrupt:
     print("Interrupted by user")
-    footage_socket.close()
-    context.term()
+
+finally:
     camera.close()
-    print("Resource Freed")
+    sock.close()
+    print("Camera closed. Resource Freed")

@@ -1,23 +1,36 @@
 import cv2
-import zmq
-import base64
+import socket
 import numpy as np
 
-context = zmq.Context()
-footage_socket = context.socket(zmq.PAIR)
-footage_socket.bind('tcp://*:5556')
+# Set the IP address and port to match the server
+IP = '0.0.0.0'  # Use '0.0.0.0' to bind to all available interfaces
+PORT = 12345  # The port should match the one used by the server
 
-print("Client Receiving")
+# Initialize a UDP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind((IP, PORT))
 
 try:
+    print("Starting video stream reception...")
     while True:
-        frame = footage_socket.recv_string()
-        img = base64.b64decode(frame)
-        npimg = np.frombuffer(img, dtype=np.uint8)
-        source = cv2.imdecode(npimg, 1)
-        cv2.imshow("Stream", source)
-        cv2.imwrite("image.jpg", source)
-        cv2.waitKey(1)
+        # Receive data from the UDP socket
+        packet, _ = sock.recvfrom(65535)  # Buffer size; adjust as needed
+
+        # Reconstruct the frame
+        nparr = np.frombuffer(packet, np.uint8)
+        frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+        # Display the frame
+        cv2.imshow('Video Stream', frame)
+
+        # Exit loop if 'q' is pressed
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
 except KeyboardInterrupt:
-    print("Interrupted")
+    print("Stream reception interrupted by user")
+
+finally:
+    sock.close()
     cv2.destroyAllWindows()
+    print("Socket closed and OpenCV resources released")
