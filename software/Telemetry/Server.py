@@ -11,9 +11,9 @@ PORT = 12345
 
 # Initialize the camera and set up the stream
 camera = picamera.PiCamera()
-camera.resolution = (640, 480)
+camera.resolution = (320, 240)
 camera.framerate = 10
-rawCapture = PiRGBArray(camera, size=(640, 480))
+rawCapture = PiRGBArray(camera, size=(320, 240))
 
 # Initialize UDP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
