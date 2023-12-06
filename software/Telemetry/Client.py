@@ -12,7 +12,7 @@ def receive_stream(port):
 
     try:
         while True:
-            packet, _ = sock.recvfrom(65535)  # Adjust buffer size as needed
+            packet, _ = sock.recvfrom(655350)  # Adjust buffer size as needed
             nparr = np.frombuffer(packet, np.uint8)
             frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
