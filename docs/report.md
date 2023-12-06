@@ -11,7 +11,8 @@
 
 Provide a brief overview of the project objhectives, approach, and results.
 
-# 1. Introduction
+# 
+1. Introduction
 
 In most modern cars, we have cameras, radars, and various other sensors to protect driving safety. However, in certain scenarios, the driver's vision might be blocked by large vehicles and trucks. This could be dangerous as the driver cannot see incoming cars, bikes, or pedestrians and can cause road accidents. Therefore, we aim to design an embedded system that detects such scenarios where the driver's vision is blocked and provides them with real-time video of the visually blocked area from a camera on a nearby car.
 
