@@ -7,12 +7,14 @@ print("Server Starting")
 IP = '192.168.105.228'
 PORT = 12346
 
+print("Init Camera")
 # Initialize the camera
 camera = cv2.VideoCapture(0)  # 0 is usually the default camera
 camera.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
 camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
 camera.set(cv2.CAP_PROP_FPS, 10)
 
+print("Init sockect")
 # Initialize UDP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
