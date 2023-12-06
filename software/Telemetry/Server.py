@@ -36,6 +36,12 @@ try:
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
         frame_image = frame.array
         # Process the frame here (e.g., display, save, or send it)
+        
+        # Increase JPEG compression
+        encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 70]  # Example: JPEG quality set to 70
+        result, buffer = cv2.imencode('.jpg', frame_image, encode_param)
+
+
         # Encode the frame for transmission
         _, buffer = cv2.imencode('.jpg', frame_image)
         sock.sendto(buffer, (IP, PORT))

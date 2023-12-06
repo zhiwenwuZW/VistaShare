@@ -11,9 +11,9 @@ PORT = 12346
 
 # Initialize the camera and set up the stream
 camera = picamera.PiCamera()
-camera.resolution = (640, 480)
+camera.resolution = (320, 240)
 camera.framerate = 10
-rawCapture = PiRGBArray(camera, size=(640, 480))
+rawCapture = PiRGBArray(camera, size=(320, 240))
 
 # Initialize UDP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -36,6 +36,10 @@ try:
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
         frame_image = frame.array
         # Process the frame here (e.g., display, save, or send it)
+        # Increase JPEG compression
+        encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 70]  # Example: JPEG quality set to 70
+        result, buffer = cv2.imencode('.jpg', frame_image, encode_param)
+
         # Encode the frame for transmission
         _, buffer = cv2.imencode('.jpg', frame_image)
         sock.sendto(buffer, (IP, PORT))
