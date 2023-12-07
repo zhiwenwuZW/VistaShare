@@ -6,6 +6,8 @@ import numpy as np
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind(('0.0.0.0', 10001))
 
+print("Client up")
+
 # Stream reception loop
 while True:
     packet, _ = sock.recvfrom(65536)
@@ -16,6 +18,8 @@ while True:
         cv2.imshow('Video Stream', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+    else:
+        print("waiting")
 
 cv2.destroyAllWindows()
 sock.close()
