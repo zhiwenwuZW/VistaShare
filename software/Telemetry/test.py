@@ -1,15 +1,18 @@
-import cv2
+import socket
+import time
 
-cap = cv2.VideoCapture(0)
+from picamera2 import Picamera2
+from picamera2.encoders import H264Encoder
+from picamera2.outputs import FileOutput
 
-if not cap.isOpened():
-    print("Camera can't be opened")
-else:
-    ret, frame = cap.read()
-    if ret:
-        print("Frame captured")
-        # Optionally display the frame using cv2.imshow()
-    else:
-        print("Failed to capture frame")
+picam2 = Picamera2()
+video_config = picam2.create_video_configuration({"size": (320, 240)})
+picam2.configure(video_config)
+encoder = H264Encoder(1000000)
 
-cap.release()
+with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
+    sock.connect(("192.168.52.228", 10001))
+    stream = sock.makefile("wb")
+    picam2.start_recording(encoder, FileOutput(stream))
+    time.sleep(20)
+    picam2.stop_recording()
