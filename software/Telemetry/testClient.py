@@ -1,23 +1,17 @@
+from ultralytics import YOLO
 import cv2
-import socket
-import numpy as np
 
-# Create a socket for receiving the video
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind(('0.0.0.0', 10001))
+model = YOLO('yolov8n.pt')
+results = model('tcp://192.168.52.228:8888', stream=True)
 
-print("Client up")
+for r in results:
+    im_array = r.plot()  # plot a BGR numpy array of predictions
 
-# Stream reception loop
-while True:
-    packet, _ = sock.recvfrom(65536)
-    nparr = np.frombuffer(packet, np.uint8)
-    frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    cv2.imshow('YOLO Detection', im_array)
     
-    if frame is not None:
-        cv2.imshow('Video Stream', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+    # Wait for a key press and break the loop
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 
+# Release resources
 cv2.destroyAllWindows()
-sock.close()
