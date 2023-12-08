@@ -1,10 +1,10 @@
 import subprocess
 
 # Define the variables
-ip_addr = "127.0.0.1"
-port = 8888
-width = 320
-height = 240
+ip_addr = "0.0.0.0"
+port = 8889
+width = 640
+height = 480
 framerate = 5
 
 
