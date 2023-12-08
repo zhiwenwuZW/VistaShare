@@ -20,9 +20,10 @@ udp_port = 12345
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 for r in results:
-    im_array = r.plot()  # plot a BGR numpy array of predictions
-    boxes = r.boxes
-    print(boxes)
+    im_array = r.orig_img
+    
+    boxes = r.boxes.xywh
+    print(im_array)
     # # Serialize data
     # data = pickle.dumps((im_array, boxes))
     # size = len(data)
