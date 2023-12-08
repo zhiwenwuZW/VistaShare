@@ -18,6 +18,8 @@ cap2 = cv2.VideoCapture(stream_address2)
 # Initiate YOLO model
 model = YOLO('yolov8n.pt')
 model2 = YOLO('yolov8n.pt')
+model.conf = 0.8
+model2.conf = 0.8
 
 # Initiate Cute Border
 cut_x1 = 0
