@@ -4,12 +4,12 @@ from ultralytics import YOLO
 # from ultralytics import RTDETR
 
 IP = "192.168.52.64"
+IP2 = "192.168.52.225"
 PORT = 8888
-PORT2 = 8889
 
 # Replace with the IP of your Raspberry Pi and port number
 stream_address = f"tcp://{IP}:{PORT}" 
-stream_address2 = f"tcp://{IP}:{PORT2}"
+stream_address2 = f"tcp://{IP2}:{PORT}"
 
 # Open a connection to the video stream
 cap = cv2.VideoCapture(stream_address)
@@ -45,8 +45,8 @@ while True:
 
 
     # only keep objects: 0: human 2: cars  5: bus 7: truck 9: traffic light 10:fire hydrant 11: stop sign 
-    results = model(frame, stream=True, classes = [0, 2, 5, 7, 9, 10, 11], conf_thres = 0.8)  # predict on an image
-    results2 = model(frame, stream=True, classes = [0, 5, 7, 9, 10, 11], conf_thres = 0.8)
+    results = model(frame, stream=True, classes = [0, 2, 5, 7, 9, 10, 11])  # predict on an image
+    results2 = model(frame, stream=True, classes = [0, 5, 7, 9, 10, 11])
 
     for result, result2 in results, results2:
         boxes = result.boxes
