@@ -19,18 +19,25 @@ udp_ip = "192.168.52.228"
 udp_port = 12345
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
+
+def send_chunks(data, sock, addr, chunk_size=65507):
+    # Break data into chunks
+    chunks = [data[i:i + chunk_size] for i in range(0, len(data), chunk_size)]
+    
+    # Send each chunk
+    for chunk in chunks:
+        sock.sendto(chunk, addr)
+
 for r in results:
     im_array = r.orig_img
     
     boxes = r.boxes.xywh
     # print(im_array)
 
-    # Serialize data
     data = pickle.dumps((im_array, boxes))
-    size = len(data)
+    send_chunks(data, sock, (udp_ip, udp_port))
 
-    # Ensure data is sent in chunks that fit in UDP datagram
-    sock.sendto(struct.pack(">L", size), (udp_ip, udp_port))
-    sock.sendto(data, (udp_ip, udp_port))
+
+
 
 
