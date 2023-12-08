@@ -3,28 +3,38 @@ import pickle
 import struct
 import cv2
 
-# Set up UDP socket
-udp_ip = "0.0.0.0"
-udp_port = 12345
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind((udp_ip, udp_port))
+# Set up TCP socket
+tcp_ip = "0.0.0.0"
+tcp_port = 12345
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind((tcp_ip, tcp_port))
+sock.listen(1)
+conn, addr = sock.accept()
 
-print("Client up")
+print("Connection established")
 
-def receive_chunks(sock, expected_size):
-    received_data = b''
-    while len(received_data) < expected_size:
-        chunk, _ = sock.recvfrom(65507)
-        received_data += chunk
-    return received_data
+def recvall(sock, count):
+    buf = b''
+    while count:
+        newbuf = sock.recv(count)
+        if not newbuf: return None
+        buf += newbuf
+        count -= len(newbuf)
+    return buf
 
-while True:
-    # Receive size of data
-    size, _ = sock.recvfrom(4)
-    size = struct.unpack(">L", size)[0]
+try:
+    while True:
+        lengthbuf = recvall(conn, 4)
+        length, = struct.unpack(">L", lengthbuf)
+        data = recvall(conn, length)
+        im_array, boxes = pickle.loads(data)
 
-    # Receive data
-    data = receive_chunks(sock, size)
-    im_array, boxes = pickle.loads(data)
+        # Process/display image and boxes here
+        print(im_array)
 
-    print(im_array)
+except KeyboardInterrupt:
+    print("KeyboardInterrupt")
+
+finally:
+    conn.close()
+    sock.close()
