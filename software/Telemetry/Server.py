@@ -3,9 +3,9 @@ import subprocess
 # Define the variables
 ip_addr = "127.0.0.1"
 port = 8888
-width = 640
-height = 320
-framerate = 10
+width = 320
+height = 240
+framerate = 5
 
 
 # Construct the command using the variables

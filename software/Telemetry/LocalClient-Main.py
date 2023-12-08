@@ -22,9 +22,10 @@ sock.connect((tcp_ip, tcp_port))
 
 for r in results:
     im_array = r.orig_img
+    ids = r.boxes.id
     boxes = r.boxes.xywh
 
-    data = pickle.dumps((im_array, boxes))
+    data = pickle.dumps((im_array, ids, boxes))
     sock.sendall(struct.pack(">L", len(data)) + data)
 
 sock.close()

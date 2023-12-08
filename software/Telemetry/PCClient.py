@@ -27,10 +27,13 @@ try:
         lengthbuf = recvall(conn, 4)
         length, = struct.unpack(">L", lengthbuf)
         data = recvall(conn, length)
-        im_array, boxes = pickle.loads(data)
+        im_array, ids, boxes = pickle.loads(data)
 
         # Process/display image and boxes here
-        print(im_array)
+        cv2.imshow('Received Image', im_array)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+        # print(boxes)
 
 except KeyboardInterrupt:
     print("KeyboardInterrupt")
