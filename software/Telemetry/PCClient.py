@@ -17,3 +17,5 @@ while True:
     # Receive data
     data, _ = sock.recvfrom(size)
     im_array, boxes = pickle.loads(data)
+
+    print(im_array)

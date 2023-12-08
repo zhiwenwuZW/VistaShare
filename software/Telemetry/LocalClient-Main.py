@@ -23,13 +23,14 @@ for r in results:
     im_array = r.orig_img
     
     boxes = r.boxes.xywh
-    print(im_array)
-    # # Serialize data
-    # data = pickle.dumps((im_array, boxes))
-    # size = len(data)
+    # print(im_array)
 
-    # # Ensure data is sent in chunks that fit in UDP datagram
-    # sock.sendto(struct.pack(">L", size), (udp_ip, udp_port))
-    # sock.sendto(data, (udp_ip, udp_port))
+    # Serialize data
+    data = pickle.dumps((im_array, boxes))
+    size = len(data)
+
+    # Ensure data is sent in chunks that fit in UDP datagram
+    sock.sendto(struct.pack(">L", size), (udp_ip, udp_port))
+    sock.sendto(data, (udp_ip, udp_port))
 
 
