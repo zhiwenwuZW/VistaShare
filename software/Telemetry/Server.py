@@ -3,8 +3,8 @@ import subprocess
 # Define the variables
 ip_addr = "0.0.0.0"
 port = 8889
-width = 640
-height = 480
+width = 320
+height = 240
 framerate = 5
 
 

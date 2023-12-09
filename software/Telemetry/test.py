@@ -48,7 +48,7 @@ while True:
 
     # only keep objects: 0: human 2: cars  5: bus 7: truck 9: traffic light 10:fire hydrant 11: stop sign 
     results = model(frame, stream=True, classes = [0, 2, 5, 7, 9, 10, 11])  # predict on an image
-    results2 = model(frame, stream=True, classes = [0, 5, 7, 9, 10, 11])
+    results2 = model(frame2, stream=True, classes = [0, 5, 7, 9, 10, 11])
 
     # Deal with Cam1
     for result in results:
