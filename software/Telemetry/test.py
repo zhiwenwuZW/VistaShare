@@ -7,7 +7,7 @@ IP = "192.168.52.64"
 IP2 = "192.168.52.225"
 PORT = 8888
 PORT2 = 8889
-# Replace with the IP of your Raspberry Pi and port number
+
 stream_address = f"tcp://{IP}:{PORT}" 
 stream_address2 = f"tcp://{IP2}:{PORT2}"
 
@@ -21,11 +21,13 @@ model2 = YOLO('yolov8n.pt')
 model.conf = 0.8
 model2.conf = 0.8
 
-# Initiate Cute Border
+# Initiate Cut Border
 cut_x1 = 0
 cut_x2 = 0
 cut_y1 = 0
 cut_y2 = 0
+xyxy = []
+xyxy2 = []
 
 if not cap.isOpened():
     print("Cannot open stream")
@@ -79,6 +81,16 @@ while True:
         plotted_frame2 = result2.plot()
         cv2.imshow('Frame2', plotted_frame2)
 
+    roi = frame[int(cut_y1):int(cut_y2), int(cut_x1):int(cut_x2)]
+    start_x = cut_x1
+    start_y = cut_y1
+    end_y = start_y + roi.shape[0]
+    end_x = start_x + roi.shape[1]
+
+    if end_y <= frame2.shape[0] and end_x <= frame2.shape[1]:
+        frame2[start_y:end_y, start_x:end_x] = roi
+
+    cv2.imshow('Edited', frame2)
 
     # Press 'q' to exit
     if cv2.waitKey(1) & 0xFF == ord('q'):
