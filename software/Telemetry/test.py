@@ -6,10 +6,10 @@ from ultralytics import YOLO
 IP = "192.168.52.64"
 IP2 = "192.168.52.225"
 PORT = 8888
-
+PORT2 = 8889
 # Replace with the IP of your Raspberry Pi and port number
 stream_address = f"tcp://{IP}:{PORT}" 
-stream_address2 = f"tcp://{IP2}:{PORT}"
+stream_address2 = f"tcp://{IP2}:{PORT2}"
 
 # Open a connection to the video stream
 cap = cv2.VideoCapture(stream_address)
