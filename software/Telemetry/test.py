@@ -50,14 +50,11 @@ while True:
     results = model(frame, stream=True, classes = [0, 2, 5, 7, 9, 10, 11])  # predict on an image
     results2 = model(frame, stream=True, classes = [0, 5, 7, 9, 10, 11])
 
-    for result, result2 in results, results2:
+    # Deal with Cam1
+    for result in results:
         boxes = result.boxes
         ids = boxes.id
         xyxy = boxes.xyxy
-
-        boxes2 = result2.boxes
-        ids2 = boxes2.id
-        xyxy2 = boxes2.xyxy
 
         # Calculate the center of image
         img_center_x = result.orig_shape[1] / 2
@@ -73,8 +70,15 @@ while True:
         plotted_frame = result.plot()
         cv2.imshow('Frame', plotted_frame)
 
+    # Deal with Cam2
+    for result2 in results2:
+        boxes2 = result2.boxes
+        ids2 = boxes2.id
+        xyxy2 = boxes2.xyxy
+
         plotted_frame2 = result2.plot()
         cv2.imshow('Frame2', plotted_frame2)
+
 
     # Press 'q' to exit
     if cv2.waitKey(1) & 0xFF == ord('q'):
