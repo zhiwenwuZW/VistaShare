@@ -5,7 +5,7 @@ ip_addr = "0.0.0.0"
 port = 8889
 width = 320
 height = 240
-framerate = 5
+framerate = 2
 
 
 # Construct the command using the variables
