@@ -83,4 +83,4 @@ Secondly, currently, we are using objects of selected classes, such as stop sign
 
 12. "Visual Studio Code (VSCode)." [Link](https://code.visualstudio.com/)
 
-13. "Android Studio." [Link]([https://zeromq.org/](https://developer.android.com/studio)
+13. "Android Studio." [Link](https://developer.android.com/studio)
