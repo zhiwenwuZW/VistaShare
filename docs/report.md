@@ -41,6 +41,8 @@ The primary metric of success for our system is its ability to provide real-time
 # 4. Evaluation and Results
 Our field test results shows that our system works successfully. We initially tested the sensors and microprocessors’s connection to made sure they work well together and the connections are stable and robust. We also tested the camera capture ability and made sure they transmit video to the laptop’s screen synchronized and with low latency. Then we tested the object detection model, and the model works well in identifying almost all the objects in the classifying labels. Finally, we ran the whole system with video fusion capability in a real world setting. We prepared two cars, setup one camera in the front car and one in the back car, as shown in the picture below. Then we started driving both cars at the same time at a steady speed. We were able to visualize the two live videos captured by the two cameras and the synthesized video upon video fusion. The resulting videos are stored to a root directory of an Android phone in real time, which can be launched using a customized mobile application to view. The quality of the resulting video is pretty good in most scenarios. The detection of the front car as well as other obstructions are accurate, and the fused video looks natural with only a few exceptions in complicated road or lighting conditions. 
 ![20231210_154440](https://github.com/zhiwenwuZW/VistaShare/assets/77821123/acdcee0f-59af-4454-a9a9-01d4532e2975)
+![Screenshot_20231212_022641_VistaShare](https://github.com/zhiwenwuZW/VistaShare/assets/77821123/b393ade1-ed27-4119-9830-017b7d9eba0d)
+
 
 
 # 5. Discussion and Conclusions
@@ -49,3 +51,36 @@ Firstly, the video fusion functionality can be enhanced. The smoothness and corr
 Secondly, currently, we are using objects of selected classes, such as stop signs and surrounding cars, to determine the resizing factor of the fused region. However, if there are multiple objects of the same class, such as multiple stop signs in the video frame, it becomes challenging to correspond the objects in the two cameras and derive an accurate resizing factor. To address this issue, we might need a mechanism to select only one object from a single class or use a combination of different objects present in both camera's video frames to calculate the resizing factor.
 
 # 6. References
+#### Papers
+
+1. Svagzdys, Anna, et al. "Real-time VL/IR video fusion leveraging multiple VL apertures on resource-constrained computing platform." *Proc. SPIE 12002, Imaging and Applied Optics 2022 (3D, AIO, COSI, IS, MATH, pcAOP)*, 2022, DOI: 10.1117/12.2618387. [Link](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12002/120020Q/Real-time-VL-IR-video-fusion-leveraging-multiple-VL-apertures/10.1117/12.2618387.short)
+
+2. Chen, Mingkang, et al. "Intelligent Live Video Streaming for Object Detection." *2021 IEEE 23rd International Conference on High Performance Computing and Communications; IEEE 19th International Conference on Smart City; IEEE 7th International Conference on Data Science and Systems (HPCC/SmartCity/DSS)*, 2021, pp. 1409-1416, DOI: 10.1109/hpcc-dss-smartcity-dependsys53884.2021.00214. [Link](https://ieeexplore.ieee.org/document/9662024)
+
+3. Demertzis, Stefanos, et al. "One-shot logo detection for large video datasets and live camera surveillance in criminal investigations." *Proc. SPIE 12178, Crime and Terrorism Detection*, 2023, DOI: 10.1117/12.2681903. [Link](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12178/121780I/One-shot-logo-detection-for-large-video-datasets-and-live/10.1117/12.2681903.short)
+
+4. Liu, Shengzhong, et al. "Multi-View Scheduling of Onboard Live Video Analytics to Minimize Frame Processing Latency." *2022 IEEE 42nd International Conference on Distributed Computing Systems (ICDCS)*, 2022, pp. 287-297, DOI: 10.1109/ICDCS54860.2022.00055. [Link](https://ieeexplore.ieee.org/document/9835401)
+
+5. Sultani, Zainab N., et al. "Color Reduction in an Authenticate Live 3D Point Cloud Video Streaming System." *Computers 5*, no. 4, 2016. [Link](https://www.mdpi.com/2073-431X/5/4/24)
+
+6. Qiu, H., Ahmad, F., Bai, F., Gruteser, M., & Govindan, R. (2018). AVR: Augmented Vehicular Reality. Proceedings of the 16th Annual International Conference on Mobile Systems, Applications, and Services.[Link](https://www.winlab.rutgers.edu/~gruteser/papers/mobisys18-7-qiu.pdf)
+   
+#### Datasets
+
+6. "Berkeley DeepDrive BDD100K." [Link](https://bdd-data.berkeley.edu/)
+
+7. "KITTI Vision Benchmark Suite." [Link](http://www.cvlibs.net/datasets/kitti/)
+
+#### Software
+
+8. "OpenCV (Open Source Computer Vision Library)." [Link](https://opencv.org/)
+
+9. "TensorFlow." [Link](https://www.tensorflow.org/)
+
+10. "Debian Operating System." [Link](https://www.debian.org/)
+
+11. "ZeroMQ (ZMQ)." [Link](https://zeromq.org/)
+
+12. "Visual Studio Code (VSCode)." [Link](https://code.visualstudio.com/)
+
+13. "Android Studio." [Link]([https://zeromq.org/](https://developer.android.com/studio)
