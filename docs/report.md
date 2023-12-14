@@ -55,6 +55,17 @@ Summary: This research discusses a live 3D point cloud video streaming system, f
 
 # 3. Technical Approach
 
+### Hardware Setup
+Our project utilizes two Raspberry Pi 4B models, each equipped with a Raspberry Pi camera module. These devices are installed on cars to function as endpoint devices for video streaming. The Raspberry Pis are powered through power banks and the car's power plug-ins. The setup does not involve any additional peripherals, ensuring a focused and streamlined hardware configuration.
+
+### Software Setup
+The Raspberry Pis operate on Python 3.8 with the 2023 Bulleye 64-bit OS. For video streaming, we employ a TCP protocol, with the video encoded and decoded using pybase64. The video streams have a resolution of 640x480 and a frame rate of 5 fps. The server, a laptop running Windows, is connected to the Raspberry Pis via SSH over Wi-Fi. This setup allows for remote commanding and efficient management of the devices.
+
+### Data Processing and Analysis
+The video data, once streamed to the laptop, undergoes object detection using the YOLOv8n model, chosen for its speed. The process involves analyzing the detection results to identify the bounding box of a car in view 2, which is intended for erasure. Additionally, we identify objects common to both views. By using these common objects, we calculate an average resize ratio for the target object. This calculated ratio is then used to appropriately resize and paste the bounding box from view 1 onto view 2, effectively replacing the specified area.
+
+This approach demonstrates a robust combination of hardware efficiency and sophisticated software processing, leveraging the capabilities of the Raspberry Pi and advanced object detection algorithms for real-time video analysis and manipulation.
+
 # 4. Evaluation and Results
 Our field test results shows that our system works successfully. We initially tested the sensors and microprocessors’s connection to made sure they work well together and the connections are stable and robust. We also tested the camera capture ability and made sure they transmit video to the laptop’s screen synchronized and with low latency. Then we tested the object detection model, and the model works well in identifying almost all the objects in the classifying labels. Finally, we ran the whole system with video fusion capability in a real world setting. We prepared two cars, setup one camera in the front car and one in the back car, as shown in the picture below. Then we started driving both cars at the same time at a steady speed. We were able to visualize the two live videos captured by the two cameras and the synthesized video upon video fusion. The resulting videos are stored to a root directory of an Android phone in real time, which can be launched using a customized mobile application to view. The quality of the resulting video is pretty good in most scenarios. The detection of the front car as well as other obstructions are accurate, and the fused video looks natural with only a few exceptions in complicated road or lighting conditions. 
 ![20231210_154440](https://github.com/zhiwenwuZW/VistaShare/assets/77821123/acdcee0f-59af-4454-a9a9-01d4532e2975)
