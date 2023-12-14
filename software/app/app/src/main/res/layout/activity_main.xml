@@ -32,7 +32,6 @@
 
 
 
-    <!--VideoView 作为视频播放时的显示位置-->
 
     <LinearLayout
         android:layout_width="match_parent"
