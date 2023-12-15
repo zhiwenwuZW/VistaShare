@@ -9,7 +9,7 @@
 
 # Abstract
 
-Provide a brief overview of the project objhectives, approach, and results.
+The "VistaShare Driving Aid" employs a Raspberry Pi-based system to enhance road safety. Utilizing camera modules and mini LiDAR, it detects when a driver's view of traffic lights is obstructed. In such events, it activates a live feed from a secondary vehicle, providing the obstructed driver with an alternative view. This innovative approach promises to improve situational awareness at intersections, potentially reducing accident rates and paving the way for collaborative safety features in smart transportation networks.
 
 # 1. Introduction
 # Motivation
